@@ -1,0 +1,91 @@
+	ANAND RAJ G1-FSDS
+
+1. Total number of employees
+SELECT COUNT(*) AS total_employees FROM EMP;
+
+2. Total number of departments
+SELECT COUNT(*) AS total_departments FROM DEPT;
+
+3. All the employees
+SELECT * FROM EMP;
+
+4. All the departments
+SELECT * FROM DEPT;
+
+5. Total salary paid to all employees
+SELECT SUM(sal) AS total_salary_paid FROM EMP;
+
+6. Total commission paid to all employees
+SELECT SUM(comm) AS total_commission_paid FROM EMP;
+
+7. Which job titles of the employees get commission paid
+SELECT DISTINCT job FROM EMP WHERE comm IS NOT NULL;
+
+8. System date
+SELECT SYSDATE FROM DUAL;
+
+9. Average salary paid to all employees
+SELECT AVG(sal) AS average_salary FROM EMP;
+
+10. How many employees are there in each department?
+SELECT deptno, COUNT(*) AS number_of_employees FROM EMP GROUP BY deptno;
+
+11. Total salary of the employees in each department
+SELECT deptno, SUM(salary) AS total_salary FROM EMP GROUP BY deptno;
+
+12. How many employees are there under each job title?
+SELECT job, COUNT(*) AS number_of_employees FROM EMP GROUP BY job;
+
+13. Average salary paid for each job title
+SELECT job, AVG(salary) AS average_sal FROM EMP GROUP BY job;
+
+14. Hire day, month, and year for each employee
+SELECT emp_id, EXTRACT(DAY FROM hire_date) AS hire_day, EXTRACT(MONTH FROM hire_date) AS hire_month, EXTRACT(YEAR FROM hire_date) AS hire_year FROM EMP;
+
+15. Sort the employee department wise
+SELECT * FROM EMP ORDER BY dept_id;
+
+16. Sort the employee based on their job titles
+SELECT * FROM EMP ORDER BY job;
+
+17. Sort the employee based on descending order of their salaries
+SELECT * FROM EMP ORDER BY sal DESC;
+
+18. Sort the employee ascending order of their department and descending order of their salary
+SELECT * FROM EMP ORDER BY dept_id ASC, sal DESC;
+
+19. How many employees have their name with 6 characters
+SELECT COUNT(*) AS employees_with_6_char_name FROM EMP WHERE LENGTH(name) = 6;
+
+20. Maximum and minimum salary paid
+SELECT MAX(sal) AS max_sal, MIN(sal) AS min_sal FROM EMP;
+
+21. Maximum, minimum, average, and sum of salary paid under each department
+SELECT dept_id, MAX(sal) AS max_sal, MIN(sal) AS min_sal, AVG(sal) AS avg_sal, SUM(sal) AS total_sal FROM EMP GROUP BY dept_id;
+
+22. Sort the employee based on their hire date
+SELECT * FROM EMP ORDER BY hire_date;
+
+23. Employee who joined latest
+SELECT * FROM EMP ORDER BY hire_date DESC FETCH FIRST 1 ROWS ONLY;
+
+24. Who is the oldest employee in the organization based on their hire date?
+SELECT * FROM EMP ORDER BY hire_date ASC FETCH FIRST 1 ROWS ONLY;
+
+25. Sort the employee based on their hire year (descending) and department (ascending)
+SELECT * FROM EMP ORDER BY EXTRACT(YEAR FROM hire_date) DESC, dept_id ASC;
+
+26. Employees who get salaries greater than or equal to the average salary of employees
+SELECT * FROM EMP WHERE sal >= (SELECT AVG(sal) FROM EMP);
+
+27. Employees who get salary less than or equal to average salary of employees
+SELECT * FROM EMP WHERE sal <= (SELECT AVG(sal) FROM EMP);
+
+28. Employees get salaries between 2000 and 4000
+SELECT * FROM EMP WHERE sal BETWEEN 2000 AND 4000;
+
+29. Which employees get the highest and lowest salary?
+SELECT * FROM EMP WHERE sal = (SELECT MAX(sal) FROM EMP) OR sal = (SELECT MIN(sal) FROM EMP);
+
+30. We need to celebrate the joining month of the employees. We plan to buy a gift for each of them. How many gifts do I need to buy for next month?
+SELECT COUNT(*) AS gifts_needed FROM EMP WHERE EXTRACT(MONTH FROM hire_date) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, 1));
