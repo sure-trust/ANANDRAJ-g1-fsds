@@ -1,0 +1,146 @@
+ ASSIGNMENT -2
+ ANAND RAJ G1 FSDS
+1. Countries and their continents. Order the results by continent names.
+SELECT country, continent FROM Countries ORDER BY continent;
+
+2. Number of countries within each continent
+SELECT continent, COUNT(*) AS number_of_countries FROM Countries GROUP BY continent;
+
+3. Countries with no car makers
+SELECT country FROM Countries WHERE country NOT IN (SELECT DISTINCT country FROM CarMakers);
+
+4. List of car makers from Japan
+SELECT name FROM CarMakers WHERE country = 'Japan';
+
+5. List of car makers from France and USA
+SELECT name FROM CarMakers WHERE country IN ('France', 'USA');
+
+6. Country and continent of Volvo car maker
+SELECT country, continent FROM CarMakers JOIN Countries ON CarMakers.country = Countries.country WHERE CarMakers.name = 'Volvo';
+
+7. Car models from 'Ford Motor Company'
+SELECT model FROM CarModels WHERE maker_id = (SELECT id FROM CarMakers WHERE name = 'Ford Motor Company');
+
+8. How many car models are made by Germany?
+SELECT COUNT(*) AS number_of_models FROM CarModels WHERE maker_id IN (SELECT id FROM CarMakers WHERE country = 'Germany');
+
+9. Car models made by Japan along with maker details
+SELECT CarModels.model, CarMakers.name, CarMakers.country FROM CarModels JOIN CarMakers ON CarModels.maker_id = CarMakers.id WHERE CarMakers.country = 'Japan';
+
+10. Which car models have highest and lowest values of below attributes. Extract the car maker and geography (country and continent) information also:
+a. Mpg
+-- Highest Mpg
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.mpg 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.mpg DESC 
+FETCH FIRST 1 ROWS ONLY;
+
+-- Lowest Mpg
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.mpg 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.mpg ASC 
+FETCH FIRST 1 ROWS ONLY;
+
+b. Cylinders
+-- Highest Cylinders
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.cylinders 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.cylinders DESC 
+FETCH FIRST 1 ROWS ONLY;
+
+-- Lowest Cylinders
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.cylinders 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.cylinders ASC 
+FETCH FIRST 1 ROWS ONLY;
+
+c. Edispl
+-- Highest Edispl
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.edispl 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.edispl DESC 
+FETCH FIRST 1 ROWS ONLY;
+
+-- Lowest Edispl
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.edispl 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.edispl ASC 
+FETCH FIRST 1 ROWS ONLY;
+
+d. Horsepower
+-- Highest Horsepower
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.horsepower 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.horsepower DESC 
+FETCH FIRST 1 ROWS ONLY;
+
+-- Lowest Horsepower
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.horsepower 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.horsepower ASC 
+FETCH FIRST 1 ROWS ONLY;
+
+e. Weight
+-- Highest Weight
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.weight 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.weight DESC 
+FETCH FIRST 1 ROWS ONLY;
+
+-- Lowest Weight
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.weight 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.weight ASC 
+FETCH FIRST 1 ROWS ONLY;
+
+f. Acel
+-- Highest Acel
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.acel 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.acel DESC 
+FETCH FIRST 1 ROWS ONLY;
+
+-- Lowest Acel
+SELECT CarModels.model, CarMakers.name, CarMakers.country, CarModels.acel 
+FROM CarModels 
+JOIN CarMakers ON CarModels.maker_id = CarMakers.id 
+ORDER BY CarModels.acel ASC 
+FETCH FIRST 1 ROWS ONLY;
+
+11. In which year most cars were made?
+SELECT year, COUNT(*) AS number_of_cars FROM CarModels GROUP BY year ORDER BY number_of_cars DESC FETCH FIRST 1 ROWS ONLY;
+
+12. Which year had less cars made?
+SELECT year, COUNT(*) AS number_of_cars FROM CarModels GROUP BY year ORDER BY number_of_cars ASC FETCH FIRST 1 ROWS ONLY;
+
+13. Min, Max and Average of below attributes around the year(s):
+a. Mpg
+SELECT year, MIN(mpg) AS min_mpg, MAX(mpg) AS max_mpg, AVG(mpg) AS avg_mpg FROM CarModels GROUP BY year;
+
+b. Cylinders
+SELECT year, MIN(cylinders) AS min_cylinders, MAX(cylinders) AS max_cylinders, AVG(cylinders) AS avg_cylinders FROM CarModels GROUP BY year;
+
+c. Edispl
+SELECT year, MIN(edispl) AS min_edispl, MAX(edispl) AS max_edispl, AVG(edispl) AS avg_edispl FROM CarModels GROUP BY year;
+
+d. Horsepower
+SELECT year, MIN(horsepower) AS min_horsepower, MAX(horsepower) AS max_horsepower, AVG(horsepower) AS avg_horsepower FROM CarModels GROUP BY year;
+
+e. Weight
+SELECT year, MIN(weight) AS min_weight, MAX(weight) AS max_weight, AVG(weight) AS avg_weight FROM CarModels GROUP BY year;
+
+f. Acel
+SELECT year, MIN(acel) AS min_acel, MAX(acel) AS max_acel, AVG(acel) AS avg_acel FROM CarModels GROUP BY year;
+
+
