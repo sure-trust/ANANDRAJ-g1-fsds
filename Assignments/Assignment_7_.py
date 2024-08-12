@@ -1,3 +1,5 @@
+# ANAND RAJ G1-FSDS
+
 # Q1 Find the sum of elements in a list.
 
 list_a = [1, 2, 36.7, 0.9, '1', 9, 27, 31, 0, 1.1, 34, 2, 3.4, 7, 3, 2]
