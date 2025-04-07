@@ -31,7 +31,7 @@ Images are loaded and processed directly using OpenCV.
 
 Make sure you have the following libraries installed:
 
-```bash
+
 pip install tensorflow opencv-python pandas numpy scikit-learn matplotlib seaborn
 🧾 How It Works
 Data Loading
