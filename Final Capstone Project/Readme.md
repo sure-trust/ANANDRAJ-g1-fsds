@@ -1,4 +1,4 @@
-readme_content = """
+
 # Facial Expression Recognition using EfficientNetB0
 
 This project implements a facial expression recognition system using a custom dataset and a convolutional neural network built on **EfficientNetB0** (without ImageNet weights). It identifies facial expressions across 9 classes and is designed for integration with real-time webcam applications such as emoji suggestion systems.
@@ -40,6 +40,14 @@ Images are loaded from fane_data/ and converted to RGB format
 
 Labels are extracted from folder names
 
+Total no of images 
+![Total no of images](./assets/Total%20no%20of%20image%20.png)
+
+Image Classes
+![Image Classes](./assets/All%20class%20image.png)
+
+Distribution of images 
+![Distribution of images](./assets/Distribution%20of%20images.png)
 Preprocessing
 
 Resize to 224x224
@@ -57,6 +65,8 @@ GlobalAveragePooling, Dropout, Dense layers
 Final output layer with softmax (9 classes)
 
 Training
+![Training Accuracy](./assets/modal%20traning%20accuracy.png)
+
 
 Optimizer: Adam
 
@@ -66,22 +76,13 @@ Metrics: accuracy
 
 Evaluation
 
-Accuracy/Loss plots
-
-Classification report
-
-Confusion matrix
-
-Sample predictions visualized with true vs predicted labels
 
 🔍 Example Output
 Replace these with actual images from your notebook
 
-📉 Accuracy and loss plots
-
-🔀 Confusion matrix
-
 🧠 Sample predictions
+ining
+![predictions](./assets/Output.png)
 
 🔮 Model Performance
 Achieved high accuracy across most facial expressions
@@ -97,9 +98,8 @@ Real-time emoji suggestion system
 
 React + Flask based web deployment
 
-Export to TensorFlow Lite or ONNX for mobile apps
 
 📌 Author
 Anand Raj
-Facial Expression Recognition Enthusiast
+
 
